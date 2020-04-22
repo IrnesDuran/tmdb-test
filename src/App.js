@@ -4,6 +4,8 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import ContainerComponent from './pages/main.component';
 import ItemPage from './pages/item-page.component';
+import Footer from  './components/footer/footer.component';
+
 
 function App() {
   return (
@@ -14,7 +16,9 @@ function App() {
         <Route path='/movies' render={ () => (<ContainerComponent categoryType= {'movies'}/>)} />
         <Route path='/tv-shows' render={ () => (<ContainerComponent categoryType= {'tv-shows'}/>)} />
         {/* <Route exact path='/signin' render={ () => this.props.currentUser ? (<Redirect to ='/'/>) : (<SignInAndSignUpPage/>)} /> */}
+        
       </Switch>
+      <Footer/>
     </div>
   );
 }

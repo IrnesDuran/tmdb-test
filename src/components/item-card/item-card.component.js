@@ -1,20 +1,20 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-const ItemCard =(props) => {
-    // console.log(props)
-    return(
-        <div className='relative flex-col rounded-lg md:w-1/2 md:h-1/2 align-center' 
-        onClick={() => props.history.push('/item')}>
-            {/* <div class="absolute m-5 text-4xl text-transparent hover:text-black">TO MOVIE DETAILS</div> */}
-            <div className=" m-3 rounded-lg shadow-2xl">
-                <div class="rounded hover:opacity-75">
-                    <img class="rounded-t-lg w-full" src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg" alt="Sunset in the mountains"/>
-                </div>
-                <div className='h-16 bg-black text-center text-xl text-teal-400 py-4 font-medium tracking-widest rounded-b-lg'>
-                    {props.test==='movies'?'MOVIE TITLE':'TV SHOW TITLE'}
-                </div>
 
+const ItemCard =(props) => {
+    //console.log(props.item);
+    return(
+        <div className='flex-col rounded-lg align-center mx-24 shadow-xl overflow-hidden' 
+        onClick={() => props.history.push('/item')}>
+            <div className="rounded-lg shadow-2xl">
+                <div className="rounded hover:opacity-75">
+                    <img className="rounded-t-lg object-cover w-full" 
+                    src={`https://image.tmdb.org/t/p/w1280/${props.item.poster_path || props.item.backdrop_path}`} alt="Sunset in the mountains"/>
+                </div>
+                <div className='h-16 bg-black text-center hd:text-xl text-teal-400 py-4 font-extrabold tracking-widest rounded-b-lg uppercase'>
+                    {props.item.title || props.item.name}
+                </div>
             </div>
         </div>
     )};
