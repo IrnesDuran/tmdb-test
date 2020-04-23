@@ -11,34 +11,33 @@ import ItemsContainer from '../components/items-container/items-container.compon
 const ContainerComponent = (props) => {
   const [searchField, setSearchField] = useState('');
   const [data, setData] = useState([]);
+  const [isMovie, setIsMovie] = useState('tv');
 
-  const category='movie'; // 'tv' or  'movie'
-  const criteria='popular'; //'top_rated' or 'popular'
+  //const category='tv'; // 'tv' or  'movie'
   const delimitedSearch = searchField.split(' ').join('&');
   
-  console.log(props)
-
-
 useEffect(() => {
   const fetchData = async () => {
     const res = await fetch(searchField.length>3 ? 
-    `https://api.themoviedb.org/3/search/${category}?api_key=addad1e44ebe9bd38c42a7e83a8851a9&language=en-US&query=${delimitedSearch}&page=1&include_adult=false&region=EN`
+    `https://api.themoviedb.org/3/search/${isMovie}?api_key=addad1e44ebe9bd38c42a7e83a8851a9&language=en-US&query=${delimitedSearch}&page=1&include_adult=false&region=EN`
     :
-    `https://api.themoviedb.org/3/${category}/${criteria}?api_key=addad1e44ebe9bd38c42a7e83a8851a9&language=en-US&page=1`);
+    `https://api.themoviedb.org/3/${isMovie}/top_rated?api_key=addad1e44ebe9bd38c42a7e83a8851a9&language=en-US&page=1`);
     const dataArray = await res.json();
     const results = await dataArray.results;
 
      setData(results);
   };
   fetchData();
-},[searchField]);
+},[searchField,isMovie]);
+
+//console.log(sessionStorage.getItem('searchTerm'));
 
   return (
     <div className="mx-10 my-10 md:mx-40">
-      <CustomButton activeLink={props.categoryType==='movies'? true:false} searchCategory={'movies'}>Movies</CustomButton>
-      <CustomButton activeLink={props.categoryType==='tv-shows'? true:false} searchCategory={'tv-shows'}>TV Shows</CustomButton>
-      <SearchField onValue={e=> setSearchField(e.target.value)}/>
-      <ItemsContainer data={data}/>
+      <CustomButton activeLink={isMovie==='movie'? true:false} category={isMovie} onClick={() => setIsMovie('movie')}>Movies</CustomButton>
+      <CustomButton activeLink={isMovie==='tv'? true:false} category={isMovie} onClick={() => setIsMovie('tv')}>TV Shows</CustomButton>
+      <SearchField onValue={e=> {setSearchField(e.target.value); sessionStorage.setItem('searchTerm',e.target.value );}} value={searchField}/>
+      <ItemsContainer data={data} searchCategory={isMovie}/>
     </div>
   );
 }

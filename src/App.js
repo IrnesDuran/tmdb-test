@@ -11,12 +11,10 @@ function App() {
   return (
     <div>
       <Switch>
-        <Route exact path='/' component={ContainerComponent} />
-        <Route path='/item' component={ItemPage} />
-        <Route path='/movies' render={ () => (<ContainerComponent categoryType= {'movies'}/>)} />
-        <Route path='/tv-shows' render={ () => (<ContainerComponent categoryType= {'tv-shows'}/>)} />
-        {/* <Route exact path='/signin' render={ () => this.props.currentUser ? (<Redirect to ='/'/>) : (<SignInAndSignUpPage/>)} /> */}
-        
+        <Route exact path='/' render={ () => (<Redirect to ='/tv-shows'/>) }/>
+        <Route path='/movies' component={ContainerComponent}/>
+        <Route path='/tv-shows' component={ContainerComponent}/>
+        <Route path='/:item' component={ItemPage} />
       </Switch>
       <Footer/>
     </div>

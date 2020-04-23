@@ -29,3 +29,5 @@ export default topMoviesRequest;
 // fetch("https://api.themoviedb.org/3/movie/top_rated?api_key=addad1e44ebe9bd38c42a7e83a8851a9&language=en-US&page=1").then(res => res.json()).then(data=> console.log(data.results)).catch(err=> console.log(err));
 
 
+
+  
