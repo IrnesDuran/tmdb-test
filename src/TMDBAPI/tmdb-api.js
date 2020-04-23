@@ -1,3 +1,5 @@
+
+//this is just a file I used to test and store few thoughts
 const topMoviesUrl = "https://api.themoviedb.org/3/movie/top_rated";
 const browseMoviesUrl = "https://api.themoviedb.org/3/movie/popular";
 const topTvShowsUrl = "https://api.themoviedb.org/3//tv/top_rated";
