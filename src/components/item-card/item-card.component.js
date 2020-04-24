@@ -2,7 +2,7 @@ import React from 'react';
 
 const ItemCard =(props) => {
     return(
-        <div className='flex-col rounded-lg align-center mx-24 shadow-xl overflow-hidden'>
+        <div className='flex-col rounded-lg align-center mx-10 shadow-xl overflow-hidden'>
             <div className="rounded-lg shadow-2xl">
                 <div className="rounded hover:opacity-75">
                     <img className="rounded-t-lg object-cover w-full" 
